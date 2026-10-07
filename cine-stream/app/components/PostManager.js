@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import styles from "../page.module.css";
 
 export default function PostManager() {
   const [posts, setPosts] = useState([]);
@@ -117,111 +118,115 @@ export default function PostManager() {
   };
 
   return (
-    <section className="post-manager">
-      <h2 className="section-heading">Create Post</h2>
+    <section className={styles.postManager}>
+      <div className={styles.formColumn}>
+        <h2 className={styles.sectionHeading}>Create Post</h2>
 
-      <form className="post-form" onSubmit={createPost}>
-        <div className="form-group">
-          <label className="form-label" htmlFor="post-title">Title</label>
+        <form className={styles.postForm} onSubmit={createPost}>
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel} htmlFor="post-title">Title</label>
 
-          <input
-            className="form-input"
-            id="post-title"
-            type="text"
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-            placeholder="Enter post title"
-            required
-          />
-        </div>
+            <input
+              className={styles.formInput}
+              id="post-title"
+              type="text"
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
+              placeholder="Enter post title"
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label className="form-label" htmlFor="post-content">Content</label>
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel} htmlFor="post-content">Content</label>
 
-          <textarea
-            className="form-input"
-            id="post-content"
-            value={content}
-            onChange={(event) => setContent(event.target.value)}
-            placeholder="Enter post content"
-            rows="5"
-            required
-          />
-        </div>
+            <textarea
+              className={styles.formInput}
+              id="post-content"
+              value={content}
+              onChange={(event) => setContent(event.target.value)}
+              placeholder="Enter post content"
+              rows="5"
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label className="form-label" htmlFor="post-author">Author ID</label>
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel} htmlFor="post-author">Author ID</label>
 
-          <input
-            className="form-input"
-            id="post-author"
-            type="text"
-            value={authorId}
-            onChange={(event) => setAuthorId(event.target.value)}
-            placeholder="Enter MongoDB user ID"
-            required
-          />
-        </div>
+            <input
+              className={styles.formInput}
+              id="post-author"
+              type="text"
+              value={authorId}
+              onChange={(event) => setAuthorId(event.target.value)}
+              placeholder="Enter MongoDB user ID"
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label className="form-label" htmlFor="post-image">Image</label>
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel} htmlFor="post-image">Image</label>
 
-          <input
-            className="form-input"
-            id="post-image"
-            type="file"
-            accept="image/*"
-            onChange={(event) => setImage(event.target.files[0] || null)}
-          />
-        </div>
+            <input
+              className={styles.formInput}
+              id="post-image"
+              type="file"
+              accept="image/*"
+              onChange={(event) => setImage(event.target.files[0] || null)}
+            />
+          </div>
 
-        <button className="btn-primary" type="submit" disabled={submitting}>
-          {submitting ? "Creating..." : "Create Post"}
-        </button>
-      </form>
+          <button className={styles.btnPrimary} type="submit" disabled={submitting}>
+            {submitting ? "Creating..." : "Create Post"}
+          </button>
+        </form>
 
-      {error && <div className="error-message">{error}</div>}
+        {error && <div className={styles.errorMessage}>{error}</div>}
+      </div>
 
-      <h2 className="section-heading">Posts</h2>
+      <div className={styles.feedColumn}>
+        <h2 className={styles.sectionHeading}>Posts</h2>
 
-      {loading && <div className="post-status">Loading posts...</div>}
+        {loading && <div className={styles.postStatus}>Loading posts...</div>}
 
-      {!loading && posts.length === 0 && <div className="post-status">No posts found.</div>}
+        {!loading && posts.length === 0 && <div className={styles.postStatus}>No posts found.</div>}
 
-      {!loading && posts.length > 0 && (
-        <div className="post-grid">
-          {posts.map((post) => (
-            <article className="post-card" key={post._id}>
-              {post.imageUrl && (
-                <div className="post-image-container">
-                  <img
-                    className="post-image"
-                    src={post.imageUrl}
-                    alt={post.title}
-                  />
-                </div>
-              )}
-              
-              <div className="post-content">
-                <h3>{post.title}</h3>
-                <p>{post.content}</p>
-
-                {post.authorId && post.authorId.name ? (
-                  <p className="post-author">
-                    By {post.authorId.name} {post.authorId.email ? `(${post.authorId.email})` : ''}
-                  </p>
-                ) : (
-                  <p className="post-author">By Unknown Author</p>
+        {!loading && posts.length > 0 && (
+          <div className={styles.postGrid}>
+            {posts.map((post) => (
+              <article className={styles.postCard} key={post._id}>
+                {post.imageUrl && (
+                  <div className={styles.postImageContainer}>
+                    <img
+                      className={styles.postImage}
+                      src={post.imageUrl}
+                      alt={post.title}
+                    />
+                  </div>
                 )}
+                
+                <div className={styles.postContent}>
+                  <h3>{post.title}</h3>
+                  <p>{post.content}</p>
 
-                <button className="btn-danger" onClick={() => deletePost(post._id)}>
-                  Delete
-                </button>
-              </div>
-            </article>
-          ))}
-        </div>
-      )}
+                  {post.authorId && post.authorId.name ? (
+                    <p className={styles.postAuthor}>
+                      By {post.authorId.name} {post.authorId.email ? `(${post.authorId.email})` : ''}
+                    </p>
+                  ) : (
+                    <p className={styles.postAuthor}>By Unknown Author</p>
+                  )}
+
+                  <button className={styles.btnDanger} onClick={() => deletePost(post._id)}>
+                    Delete
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+      </div>
     </section>
   );
 }

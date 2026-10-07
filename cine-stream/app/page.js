@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import PostManager from "./components/PostManager";
+import styles from "./page.module.css";
 
 async function getPopularMovies() {
   const res = await fetch(
@@ -26,27 +27,29 @@ export default async function Home() {
   const movies = data.results || [];
 
   return (
-    <div>
-      <h1 className="section-heading">Popular Movies</h1>
+    <div className={styles.pageContainer}>
+      <div className={styles.moviesSection}>
+        <h1 className={styles.sectionHeading}>Popular Movies</h1>
 
-      <div className="movie-grid">
-        {movies.map((movie) => (
-          <div key={movie.id} className="movie-card">
-            <Image
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-              width={200}
-              height={300}
-              className="movie-image"
-            />
+        <div className={styles.movieGrid}>
+          {movies.map((movie) => (
+            <div key={movie.id} className={styles.movieCard}>
+              <Image
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+                width={200}
+                height={300}
+                className={styles.movieImage}
+              />
+              
+              <h3 className={styles.movieTitle}>{movie.title}</h3>
 
-            <h3>{movie.title}</h3>
-
-            <Link href={`/movie/${movie.id}`}>
-              View Details
-            </Link>
-          </div>
-        ))}
+              <Link href={`/movie/${movie.id}`} className={styles.movieLink}>
+                View Details
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
 
       <PostManager />
