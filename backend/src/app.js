@@ -1,15 +1,20 @@
 const express = require("express");
 const cors = require("cors");
-
 const postRoutes = require("./routes/postRoutes");
 const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
+const allowedOrigins = process.env.CLIENT_URL 
+  ? process.env.CLIENT_URL.split(",") 
+  : ["http://localhost:3000"];
+
 app.use(cors({
-  origin: process.env.CLIENT_URL || "http://localhost:3000",
+  origin: allowedOrigins,
+  credentials: true,
   optionsSuccessStatus: 200
 }));
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
