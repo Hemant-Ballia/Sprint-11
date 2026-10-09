@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const postRoutes = require("./routes/postRoutes");
+const movieRoutes = require("./routes/movieRoutes");
 const userRoutes = require("./routes/userRoutes");
 
 const app = express();
@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("/posts", postRoutes);
+app.use("/movies", movieRoutes);
 app.use("/users", userRoutes);
 
 module.exports = app;

@@ -30,6 +30,34 @@ const createUser = async (req, res) => {
   }
 };
 
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "Email and password are required",
+      });
+    }
+
+    const mockToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.mockTokenForDevelopmentOnly";
+
+    res.status(200).json({
+      success: true,
+      message: "Login successful",
+      token: mockToken,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to login",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   createUser,
+  loginUser,
 };

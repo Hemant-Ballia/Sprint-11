@@ -26,7 +26,9 @@ export default function RootLayout({ children }) {
             <h2>
               <Link href="/" className="nav-brand">Cine-Stream</Link>
             </h2>
-            {/* Client components like SearchBar will be added here later */}
+            <div>
+              <Link href="/login" style={{ color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>Login</Link>
+            </div>
           </div>
         </nav>
         <main className="container">

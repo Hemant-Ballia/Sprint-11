@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import PostManager from "./components/PostManager";
+import MovieManager from "./components/MovieManager";
 import styles from "./page.module.css";
 
 async function getPopularMovies() {
@@ -52,7 +52,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <PostManager />
+      <MovieManager />
     </div>
   );
 }

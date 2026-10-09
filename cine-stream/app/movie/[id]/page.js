@@ -43,7 +43,7 @@ export default async function MovieDetails({ params }) {
 
   return (
     <main className="container">
-      <Link href="/movie" className="back-link">← Back to Movies</Link>
+      <Link href="/" className="back-link">← Back to Movies</Link>
       
       <div className="movie-details-layout">
         <Image
