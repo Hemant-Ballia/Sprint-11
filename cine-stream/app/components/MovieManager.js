@@ -13,7 +13,7 @@ export default function MovieManager() {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://sprint-11-backend-seven.vercel.app";
 
   useEffect(() => {
     const fetchMovies = async () => {
