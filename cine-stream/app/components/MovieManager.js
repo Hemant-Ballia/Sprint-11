@@ -13,7 +13,7 @@ export default function MovieManager() {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://sprint-11-backend-seven.vercel.app";
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -53,7 +53,6 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://sprint-11-backend-sev
       setError("");
 
       const formData = new FormData();
-
       formData.append("title", title);
       formData.append("description", description);
 
@@ -79,7 +78,6 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://sprint-11-backend-sev
       setImage(null);
 
       const imageInput = document.getElementById("movie-image");
-
       if (imageInput) {
         imageInput.value = "";
       }

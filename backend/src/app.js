@@ -7,10 +7,7 @@ const app = express();
 
 const allowedOrigins = process.env.CLIENT_URL 
   ? process.env.CLIENT_URL.split(",") 
-  : [
-      "http://localhost:3000",
-      "https://sprint-11-cine-stream-beta.vercel.app"
-    ];
+  : ["http://localhost:3000"];
 
 app.use(cors({
   origin: allowedOrigins,
